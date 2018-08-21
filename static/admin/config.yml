@@ -1,0 +1,43 @@
+backend:
+  name: gitlab
+  repo: rogermparent/tubes
+  auth_type: implicit
+  app_id: 41058b2108dd5ef81f4992f000c9e419b50ba28a78a9a2028e838e245a777702
+  api_root: http://192.168.1.104/api/v4
+  base_url: http://192.168.1.104
+  auth_endpoint: oauth/authorize
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: posts
+    label: Posts
+    folder: src/pages/posts
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: date }
+      - { name: category, label: Category }
+      - { name: tags, label: Tags, widget: list }
+      - name: author
+        label: Author
+        widget: relation
+        collection: authors,
+        searchFields: ["name", "slug"]
+        valueField: "slug"
+        displayFields: ["name"]
+      - { name: body, label: Body, widget: markdown }
+  - name: videos
+    label: Videos
+    label_singular: video
+    folder: src/pages/videos
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: thumbnail, label: "Thumbnail", widget: image }
+      - { name: link, label: "Magnet Link" }
+      - { name: length, label: Length }
+      - { name: upload_time, label: "Upload Time", widget: date }
+      - { name: channel, label: "Channel" }
+      - { name: body, label: "Description", widget: markdown }

@@ -1,0 +1,140 @@
+$pale-gold: #C0B283;
+$silk: #DCD0C0;
+$paper: #F4F4F4;
+$charcoal: #373737;
+
+$color1: $pale-gold;
+$color2: $silk;
+$color3: $paper;
+$color4: $charcoal;
+
+%margin-reset {
+    margin:0;
+    padding:0;
+}
+
+%unstyled-list {
+    @extend %margin-reset;
+    list-style: none;
+}
+
+html, body, #___gatsby {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+
+    font-size: 14px;
+}
+
+#___gatsby>div {
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+    margin: 0.25em 0;
+}
+
+#site {
+    color: $color4;
+    background-color: $color3;
+    display: flex;
+    flex-flow: column nowrap;
+
+    height: 100%;
+
+    >header, footer {
+        font-family: sans-serif;
+        text-align: center;
+        color: $color3;
+        background-color: $color4;
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+    }
+    >main {
+        flex: 1 0 auto;
+        margin: 0.5em;
+    }
+    >header {
+        h1 {
+            font-size: 24px;
+        }
+        nav>div {
+            display: flex;
+            font-size: 14px;
+            justify-content: center;
+            align-items: center;
+            color: $color4;
+            background-color: $color1;
+            border-bottom: 1px solid $color4;
+
+            &.contextual {
+                background-color: $color2;
+            }
+            >a {
+                flex: 1;
+                text-align: center;
+                padding: 0.25em;
+                border-left: 1px solid $color4;
+
+                &:first-of-type {
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+.video-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    >li {
+        border-bottom: 1px solid black;
+        padding: 0.5em;
+    }
+
+    .video-info {
+        font-size: 0.9em;
+        >* {
+            display: block;
+            margin: 0.5em 0 0 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            >li{
+                display: inline-block;
+                &:first-of-type:before{
+                    content: "";
+                    padding: 0;
+                }
+                &:before {
+                    content: "\002022";
+                    padding: 0 0.25em;
+                }
+            }
+        }
+        h2 {
+            font-size: 1.2em;
+        }
+        a {
+            color: inherit;
+        }
+    }
+}
+
+.post-list {
+    @extend %unstyled-list;
+    >li {
+        padding: 0.5em 0.25em;
+        border: 1px solid gray;
+        border-style: none none solid none;
+        &:first-of-type {
+            border-style: solid none;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+title: Tubes
+
+header_nav:
+  - label: "Home"
+    url: "/"
+  - label: "About"
+    url: "/about"
+  - label: "Blog"
+    url: "/posts"
+  - label: "Videos"
+    url: "/videos"
