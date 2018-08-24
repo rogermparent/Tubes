@@ -2,7 +2,7 @@
 
 **The self-hosted website solution (Eventually, hopefully)**
 
-Heya! This is a passion project created in hopes to solve the issues facing free speech on the internet.
+Heya! This is a passion project created in hopes to combat the issue of over-centralization and deplatforming on the internet.
 
 ## Basics
 
