@@ -1,11 +1,6 @@
 backend:
-  name: gitlab
+  name: github
   repo: rogermparent/tubes
-  auth_type: implicit
-  app_id: 41058b2108dd5ef81f4992f000c9e419b50ba28a78a9a2028e838e245a777702
-  api_root: http://192.168.1.104/api/v4
-  base_url: http://192.168.1.104
-  auth_endpoint: oauth/authorize
 
 media_folder: static/assets
 public_folder: assets
