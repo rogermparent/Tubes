@@ -29,7 +29,8 @@ gatsby develop
 ## Roadmap
 
  - [ ] Actually decent styling (scss)
- - [ ] Video Component
+ - [ ] Video / Torrent catalog component
+ - [ ] Webtorrent-based media player
  - [ ] Netlify CMS Video "Uploader" widget
  - [ ] Blogging Component
  - [ ] Microblogging functionality
