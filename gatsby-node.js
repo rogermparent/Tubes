@@ -1,16 +1,14 @@
 const path = require('path').posix;
-
 const slugify = require('slugify');
-const resolveTemplate = (layout) => {
-    layout = layout || 'default';
+
+// Resolves a layout name to the absolute path of its associated component.
+const resolveLayout = (layout) => {
     return path.resolve(`src/layouts/${layout}.js`);
 }
 
 exports.onCreateNode = ({node, actions, getNode}) => {
     const { createNodeField } = actions;
     const fileBaseDir = 'src';
-
-    //
 
     const parentNode = getNode(node.parent);
 
@@ -135,23 +133,63 @@ exports.createPages = ({graphql, actions}) => {
                     slug
                 );
 
+                // Try many layouts in first->last priority
+                const layouts = []
 
-                switch(pageDir) {
-                case 'posts':
-
+                // If a layout is defined in the frontmatter,
+                // try layouts based on it first.
+                if (frontmatter.layout) {
+                    layouts.push(
+                        path.join(pageDir,frontmatter.layout),
+                        frontmatter.layout,
+                    )
                 }
 
-                const layout = resolveTemplate(frontmatter.layout);
+                // try the 'pageDir/single' and 'default' layouts
+                // on all pages.
+                layouts.push(
+                    path.join(pageDir,'single'),
+                    "default",
+                );
 
-                createPage({
-                    path: pagePath,
-                    component: layout,
-                    context: {
-                        pageID: id,
+                for(layout of layouts) {
+                    // Skip this iteration if the current layout isn't specified
+                    if (layout) {
+                        try {
+                            const resolvedLayout = resolveLayout(layout);
+                            // Attempt to resolve the layout module to check if it exists.
+                            require.resolve(resolvedLayout);
+                            createPage({
+                                path: pagePath,
+                                component: resolvedLayout,
+                                context: {
+                                    pageID: id,
+                                }
+                            });
+                            break;
+                        } catch(e) {
+                            continue;
+                        }
                     }
-                });
+                }
+
             });
         });
         resolve();
     });
 };
+
+exports.onCreateWebpackConfig = ({
+    stage,
+    rules,
+    loaders,
+    plugins,
+    actions,
+}) => {
+    actions.setWebpackConfig({
+        target: "web",
+        node: {
+            fs: "empty"
+        }
+    })
+}
