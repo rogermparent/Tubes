@@ -4,6 +4,15 @@
 
 Heya! This is a passion project created in hopes to combat the issue of over-centralization and deplatforming on the internet.
 
+## Warning
+
+**Tubes cannot be statically built at the moment** 
+
+This is because WebTorrent depends on the mime package which [currently isn't packable by Webpack](https://github.com/google/google-auth-library-nodejs/pull/371), which is an integral part of Gatsby.
+
+You can, however, run it just fine in development mode.  
+This issue seems to be close to resolution as well, so hopefully it will be resolved by release time.
+
 ## Basics
 
 This project is built with "off-the-shelf" open-source software- namely 
