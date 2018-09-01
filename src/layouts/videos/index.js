@@ -1,5 +1,5 @@
 import React from "react";
-import {graphql, StaticQuery} from "gatsby";
+import {graphql, StaticQuery, Link} from "gatsby";
 import VideoList from "../../components/videos/list";
 import Layout from "../base";
 //import Helmet from "react-helmet";
@@ -8,7 +8,7 @@ export default ()=>(
     <StaticQuery
       query={graphql`
 {
-  allMarkdownRemark(filter: {
+  videos: allMarkdownRemark(filter: {
     fields: {
       dir: {eq: "pages/videos"}
     }
@@ -39,12 +39,14 @@ export default ()=>(
 `
       }
       render={
-          ({allMarkdownRemark: {edges}})=>{
+          ({videos: {edges}})=>{
+              console.log(edges);
               return(
                   <Layout title="Videos">
                     <VideoList items={edges} />
                   </Layout>
-              )}
+              )
+          }
       }
         />
 )

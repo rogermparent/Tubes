@@ -1,5 +1,5 @@
 import React from "react";
-//import {Link} from "gatsby";
+import {Link} from "gatsby";
 import Image from "gatsby-image";
 import Moment from "moment";
 
@@ -10,7 +10,8 @@ export const VideoListing = (
         channel,
         publishTime,
         length,
-        download
+        download,
+        path
     }
 ) => {
     const videoMoment = Moment(publishTime);
@@ -21,9 +22,9 @@ export const VideoListing = (
           </a>
           <div className="video-info">
             <h2>
-              <a href={download}>
+              <Link to={path}>
                 {title}
-              </a>
+              </Link>
             </h2>
             <ul>
               {
